@@ -1,6 +1,14 @@
 # Use the official lightweight Python image
 FROM python:3.11-slim
 
+
+
+ENV DB_HOST=localhost
+ENV DB_PORT=5432
+ENV DB_NAME=ucare
+ENV DB_USER=admin123
+ENV DB_PASSWORD=admin123
+
 # Set the working directory
 WORKDIR /app
 
