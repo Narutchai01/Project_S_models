@@ -2,20 +2,32 @@
 FROM python:3.11-slim
 
 
-
-ENV DB_HOST=localhost
+ENV DB_HOST=localhost 
+ENV DB_NAME =ucare
+ENV ENV DB_USER=admin123
+ENV DB_PASSWORD=admin123 
 ENV DB_PORT=5432
-ENV DB_NAME=ucare
-ENV DB_USER=admin123
-ENV DB_PASSWORD=admin123
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file to the container
-COPY requirements.txt .
+# Install system dependencies for psycopg2
+RUN apt-get update && apt-get install -y \
+    gcc \
+    postgresql-server-dev-all \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
+# Copy the requirements file to the container
+COPY requirements.txt /app
+
+# Update pip first
+RUN pip install --upgrade pip
+
+# Install PyTorch separately
+# RUN pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+
+# Install other dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code to the container
