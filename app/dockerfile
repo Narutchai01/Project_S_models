@@ -3,8 +3,8 @@ FROM python:3.11-slim
 
 
 ENV DB_HOST=localhost 
-ENV DB_NAME =ucare
-ENV ENV DB_USER=admin123
+ENV DB_NAME=ucare
+ENV DB_USER=admin123
 ENV DB_PASSWORD=admin123 
 ENV DB_PORT=5432
 
@@ -26,6 +26,9 @@ RUN pip install --upgrade pip
 
 # Install PyTorch separately
 RUN pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+
+# Make sure transformers is updated to a newer version
+RUN pip install transformers>=4.25.0
 
 # Install other dependencies
 RUN pip install --no-cache-dir -r requirements.txt
