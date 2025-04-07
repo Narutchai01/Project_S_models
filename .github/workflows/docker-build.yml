@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-and-push-docker:
-    needs: build-and-test
     runs-on: ubuntu-latest
     # Only run this job when pushing to main or Development, not on pull requests
     if: github.event_name == 'push'
