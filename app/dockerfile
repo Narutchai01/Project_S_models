@@ -25,7 +25,7 @@ COPY requirements.txt /app
 RUN pip install --upgrade pip
 
 # Install PyTorch separately
-# RUN pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+RUN pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
 
 # Install other dependencies
 RUN pip install --no-cache-dir -r requirements.txt
